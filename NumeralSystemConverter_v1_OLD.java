@@ -3,6 +3,10 @@ package converter;
 import java.util.Scanner;
 
 /*
+Achtung!
+New version available! This one is a pure cancer. 
+
+
 ---------------------------------------------------------------------
 A numeral converter that converts value from numeric system A to value from system B;
 
