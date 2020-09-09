@@ -1,4 +1,4 @@
-*/
+/*
 Second attempt - completly rewritten. Much, much better & cleaner code.
 
 This program converts any number from one numeral system to another - also converts floating point numbers. 
@@ -13,7 +13,7 @@ output: 148.g88a8 // af.xy [base-35] converted to 148.g88a8 [base-17]
 
 9/9/2020 | 18:30 | s. 
 -------------------------------------------------------------------------
-/*
+*/
 
 import java.util.Scanner;
 
