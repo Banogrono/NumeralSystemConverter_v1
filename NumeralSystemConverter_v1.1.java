@@ -96,26 +96,54 @@ class Main {
         System.out.println(wholeNum + "." + floatPart);
     }
 
-    public static void main(String[] args) {
+ public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // take input
-        int inputBase   = scanner.nextInt();
+
+        int inputBase;
+        try { // check if inputBase can be converted to int
+            inputBase = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("error");
+            return;
+        }
+
         String inputNum = scanner.next();
-        int outputBase  = scanner.nextInt();
 
+        int outputBase;
+        try { // check if outputBase can be converted to int
+            outputBase = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("error");
+            return;
+        }
 
-        if (inputBase == 1) {
-            System.out.println(convertToOutputBase(inputNum.length(), outputBase));
-        } else if (outputBase == 1) {
-            outputBase1(convertToDecimal(inputNum, inputBase));
+        if (inputBase > 36 || inputBase < 1) { // check if input and output base is within range 1-36
+            System.out.println("error");
         } else {
-            if (isFloatingPoint(inputNum)) {
-                String wholeNumberTargetBase = convertToOutputBase(convertToDecimal(getWholeNumber(inputNum), inputBase), outputBase);
-                String floatPartTargetBase = convertFloatToOutputBase(convertFloatToDecimal(getFloat(inputNum), inputBase), outputBase);
-                mergeWholeAndFloat(wholeNumberTargetBase, floatPartTargetBase);
+            if (outputBase > 36 || outputBase < 1) {
+                System.out.println("error");
             } else {
-                System.out.println(convertToOutputBase(convertToDecimal(inputNum, inputBase), outputBase));
+
+                if (inputBase == 1) {
+                    System.out.println(convertToOutputBase(inputNum.length(), outputBase));
+                } else if (outputBase == 1) {
+                    if (isFloatingPoint(inputNum)) { 
+                        outputBase1(convertToDecimal(getWholeNumber(inputNum), inputBase));
+                    }
+                    else {
+                        outputBase1(convertToDecimal(inputNum, inputBase));
+                    }
+                } else {
+                    if (isFloatingPoint(inputNum)) {
+                        String wholeNumberTargetBase = convertToOutputBase(convertToDecimal(getWholeNumber(inputNum), inputBase), outputBase);
+                        String floatPartTargetBase = convertFloatToOutputBase(convertFloatToDecimal(getFloat(inputNum), inputBase), outputBase);
+                        System.out.println(mergeWholeAndFloat(wholeNumberTargetBase, floatPartTargetBase));
+                    } else {
+                        System.out.println(convertToOutputBase(convertToDecimal(inputNum, inputBase), outputBase));
+                    }
+                }
             }
         }
     }
